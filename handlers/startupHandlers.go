@@ -180,13 +180,21 @@ func (sh StartupHandler) DeleteStartup(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	token := pkg.GetHeader(r.Header.Get("Authorization"))
+	if err := pkg.VerifyToken(token); err != nil {
+		http.Error(w, "User not authorized", http.StatusUnauthorized)
+	}
+
+	id := pkg.UnloadToken(token)
+
 	rawUrl := r.RequestURI
 	splittedUrl := strings.Split(rawUrl, "/")
 
-	_, err := sh.DB.Exec("DELETE FROM startup WHERE slug=?", splittedUrl[len(splittedUrl)-1])
+	_, err := sh.DB.Exec("DELETE FROM startup WHERE slug=? AND userId=?", splittedUrl[len(splittedUrl)-1], id)
 
 	if err != nil {
 		http.Error(w, "User is not found", http.StatusNotFound)
+		return
 	}
 
 	w.WriteHeader(http.StatusOK)
