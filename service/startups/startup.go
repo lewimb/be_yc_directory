@@ -14,9 +14,7 @@ func RegisterRoutesStartUp(mux *http.ServeMux, db *sql.DB) {
 	}
 
 	// Get All Startup
-	mux.HandleFunc("GET /startup", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Successfully get startup data")
-	})
+	mux.HandleFunc("GET /startup", handler.GetAllStartup)
 
 	// Get startup by id
 	mux.HandleFunc("GET /startup/{id}", func(w http.ResponseWriter, r *http.Request) {

@@ -8,5 +8,5 @@ type Startup struct {
 	Image    string `json:"image"`
 	Slug     string `json:"slug"`
 	Desc     string `json:"desc"`
-	User     User   `json:"user"`
+	User     User   `json:"userId"`
 }
