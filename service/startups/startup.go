@@ -16,13 +16,14 @@ func RegisterRoutesStartUp(mux *http.ServeMux, db *sql.DB) {
 	// Get All Startup
 	mux.HandleFunc("GET /startup", handler.GetAllStartup)
 
-	// Get startup by id
-	mux.HandleFunc("GET /startup/{id}", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Successfully get startup data")
-	})
+	// Get startup by slug
+	mux.HandleFunc("GET /startup/{slug}", handler.GetStartupBySlug)
 
 	// Create startup
 	mux.HandleFunc("POST /startup", handler.CreateStartup)
+
+	// Delete startup
+	mux.HandleFunc("DELETE /startup/{slug}", handler.DeleteStartup)
 
 	// Edit startup
 	mux.HandleFunc("PUT /startup", func(w http.ResponseWriter, r *http.Request) {

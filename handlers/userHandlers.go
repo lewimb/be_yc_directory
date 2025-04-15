@@ -41,7 +41,7 @@ func (uh *UserHandler) SignUp(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.WriteHeader(http.StatusAccepted)
+	w.WriteHeader(http.StatusOK)
 	fmt.Fprint(w, "Successfully created account")
 }
 

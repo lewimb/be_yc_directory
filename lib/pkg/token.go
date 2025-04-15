@@ -41,9 +41,6 @@ func GetHeader(header string) string {
 	headerArr := strings.Split(header, " ")
 	token := headerArr[1]
 
-	log.Println(headerArr)
-	log.Println(token)
-
 	return token
 }
 

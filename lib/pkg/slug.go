@@ -16,7 +16,7 @@ func CreateSlug(title string) string {
 
 	processedString = strings.TrimSpace(processedString)
 
-	slug := strings.ReplaceAll(processedString, " ", " _")
+	slug := strings.ReplaceAll(processedString, " ", "-")
 
 	slug = strings.ToLower(slug)
 
